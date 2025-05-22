@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import "./App.css"
+import Header from './Components/Header/Header'; // ✅
+
+// import Head from './Components/Header/Head'
+
 
 
 
@@ -8,8 +12,9 @@ function App() {
   
   return (
     <>
-    <div className='App'></div>
-      <h1>maryam</h1>
+    <Header />
+    {/* <Head /> */}
+     
     </>
   )
 }
