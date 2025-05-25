@@ -18,8 +18,8 @@ export const categoryInfos = [
       "https://www.hannahlavery.co.za/cdn/shop/files/MensShirtWhite19.jpg?v=1701765679&width=1280",
   },
   {
-    title: "Jewelry",
-    name: "jewelry",
+    title: "Jewelery",
+    name: "jewelery",
     imgLink:
       "https://cdn-images.farfetch-contents.com/25/12/43/43/25124343_55859656_2048.jpg",
   },

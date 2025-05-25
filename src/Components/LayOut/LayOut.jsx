@@ -1,7 +1,10 @@
 import React from 'react'
 import Header from '../Header/Header'
+import { useLocation } from 'react-router-dom';
 
-const LayOut = ({children}) => {
+const LayOut = ({children}) => 
+  
+  {
   return (
     <div>
       <Header />

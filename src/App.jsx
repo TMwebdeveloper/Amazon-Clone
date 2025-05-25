@@ -1,28 +1,14 @@
-import { useState } from 'react'
-import "./App.css"
-import "./index.css"
-import Header from './Components/Header/Header'; 
-import Carousel from "./Components/Carousel/Carousel"
-import Category from './Components/Category/Category';
-import Product from './Components/Product/Product';
+import "./App.css";
+import "./index.css";
 import Routing from "./Router.jsx";
-import LayOut from './Components/LayOut/LayOut.jsx';
-
-
-
 
 function App() {
-  
   return (
     <div>
-      <Header />
-      <Carousel />
-      <Category />
-      <Product />
-      <Routing />
-      {/* <LayOut/> */}
+      
+      <Routing /> {/* This now handles rendering the entire app */}
     </div>
   );
 }
 
-export default App
+export default App;
