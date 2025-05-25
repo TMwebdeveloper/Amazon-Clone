@@ -5,6 +5,8 @@ import Header from './Components/Header/Header';
 import Carousel from "./Components/Carousel/Carousel"
 import Category from './Components/Category/Category';
 import Product from './Components/Product/Product';
+import Routing from "./Router.jsx";
+import LayOut from './Components/LayOut/LayOut.jsx';
 
 
 
@@ -12,13 +14,14 @@ import Product from './Components/Product/Product';
 function App() {
   
   return (
-    <>
+    <div>
       <Header />
-    < Carousel />
-    <Category />
-    <Product />
-    
-    </>
+      <Carousel />
+      <Category />
+      <Product />
+      <Routing />
+      {/* <LayOut/> */}
+    </div>
   );
 }
 
