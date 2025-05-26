@@ -19,21 +19,23 @@ const Product = () => {
     })
     }, [])
 
-  return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <section className={Classes.products__container}>
-          {products?.map((singleProduct) => {
-            return (
-              <ProductCard product={singleProduct} key={singleProduct.id} />
-            );
-          })}
-        </section>
-      )}
-    </>
-  );
-}
+    return (
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <section className={Classes.products__container}>
+            {products?.map((singleProduct) => (
+              <ProductCard
+                key={singleProduct.id}
+                product={singleProduct}
+                renderAdd={true}
+              />
+            ))}
+          </section>
+        )}
+      </>
+    );
+  }
 
 export default Product

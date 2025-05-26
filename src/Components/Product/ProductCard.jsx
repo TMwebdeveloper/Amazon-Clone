@@ -7,27 +7,26 @@ import { useContext } from "react";
 import { DataContext } from "../DtaProvider/DtaProvider";
 import { Type } from "../../Utility/ActionType";
 
-const ProductCard = ({ product, flex, renderDesc }) => {
+const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
   if (!product || Object.keys(product).length === 0) return null;
 
-  const { image, title, id, rating, price,description } = product;
+  const { image, title, id, rating, price, description } = product;
 
-    const [state,dispatch]=useContext(DataContext)
+  const [state, dispatch] = useContext(DataContext);
 
-    const addToCart = () => {
-      dispatch({
-        type: Type.ADD_TO_BASKET,
-        item: {
-          image,
-          title,
-          id,
-          rating,
-          price,
-          description,
-        },
-      });
-    };
-    
+  const addToCart = () => {
+    dispatch({
+      type: Type.ADD_TO_BASKET,
+      item: {
+        image,
+        title,
+        id,
+        rating,
+        price,
+        description,
+      },
+    });
+  };
 
   return (
     <div
@@ -41,7 +40,7 @@ const ProductCard = ({ product, flex, renderDesc }) => {
 
       <div>
         <h3>{title}</h3>
-        {renderDesc && <div style={{maxWidth:"750px"}}>{description}</div>}
+        {renderDesc && <div style={{ maxWidth: "750px" }}>{description}</div>}
 
         <div className={Classes.rating}>
           <Rating value={rating?.rate || 0} precision={0.1} readOnly />
@@ -51,8 +50,11 @@ const ProductCard = ({ product, flex, renderDesc }) => {
         <div>
           <CurrencyFormat amount={price} />
         </div>
-
-        <button className={Classes.button} onClick={addToCart}>add to cart</button>
+        {renderAdd && 
+          <button className={Classes.button} onClick={addToCart}>
+            add to cart
+          </button>
+        }
       </div>
     </div>
   );
