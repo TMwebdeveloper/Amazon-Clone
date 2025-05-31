@@ -6,9 +6,10 @@ import { BsSearch } from "react-icons/bs";
 import LowerHeader from "./LowerHeader";
 import { BiCart } from "react-icons/bi";
 import { DataContext } from "../DtaProvider/DtaProvider";
+import { auth } from "../../Utility/Firebase";
 
 const Header = () => {
-  const [{basket}, dispatch]=useContext(DataContext)
+  const [{user,basket}, dispatch]=useContext(DataContext)
   const totalItem=basket?.reduce((amount,item)=>{
     return item.amount + amount
   },0)
@@ -43,7 +44,7 @@ const Header = () => {
               <option value="">All</option>
             </select>
             <input type="text" placeholder="" />
-            <BsSearch size={25} />
+            <BsSearch size={38} />
           </div>
 
           {/* Right-side Navigation */}
@@ -57,14 +58,27 @@ const Header = () => {
                 <option value="">EN</option>
               </select>
             </Link>
-            <Link to="">
-              <p>Sign In</p>
-              <span>Account & Lists</span>
+            <Link to={!user && "/auth"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut()}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello,Sign In</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
+              </div>
             </Link>
+
             <Link to="/orders">
               <p>Returns</p>
               <span>& Orders</span>
             </Link>
+
             <Link to="/cart" className={classes.cart}>
               <BiCart size={35} />
               <span>{totalItem}</span>

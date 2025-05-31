@@ -16,7 +16,7 @@ const CarouselEffect = () => {
         showThumbs={false}
       >
         {img.map((imageItemlink) => {
-          return <img src={imageItemlink} />;
+          return <img key={imageItemlink} src={imageItemlink} />;
         })}
       </Carousel>
       <div className={classes.hero__img}></div>

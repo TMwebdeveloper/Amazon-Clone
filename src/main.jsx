@@ -6,7 +6,7 @@ import { DataProvider } from "./Components/DtaProvider/DtaProvider";
 import { initialState, reducer } from "./Utility/Reducer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/Amazon-Clone">
     <DataProvider reducer={reducer} initialState={initialState}>
       <App />
     </DataProvider>
