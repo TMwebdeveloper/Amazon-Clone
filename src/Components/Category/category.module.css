@@ -25,12 +25,23 @@
   font-weight: bold;
   color: rgb(9, 132, 209);
 }
-.category__container {
+/* .category__container {
   position: relative;
   margin-top: -10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
   justify-content: space-between;
-}
+} */
 
+.category__container {
+  position: relative;
+  margin-top: -10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  place-items: center;
+}

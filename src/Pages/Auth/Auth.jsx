@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Classes from "./SignUp.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {auth} from "../../Utility/Firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { DataContext } from "../../Components/DtaProvider/DtaProvider";
@@ -17,6 +17,9 @@ const Auth = () => {
 
   const [{user,}, dispatch] =useContext(DataContext)
   const navigate=useNavigate()
+  
+  const navStateData = useLocation()
+  console.log(navStateData)
 // console.log(user)
 
 const authHundler =async(e)=>{
@@ -32,7 +35,7 @@ if (e.target.name =="signin"){
         user:userInfo.user
       })
       setLoading({...loading, signIn:false})
-      navigate("/")
+      navigate(navStateData?.state?.redirect ||"/");
     })
     .catch((err)=>{
       setError(err.message)
@@ -44,10 +47,10 @@ createUserWithEmailAndPassword(auth,email,password).then((userInfo)=>{
 setLoading({...loading,signUp:true})
   dispatch({
     type: Type.SET_USER,
-    user: userInfoloading.user,
+    user: userInfo.user,
   });
   setLoading({ ...loading, signUp: false });
-  navigate("/");
+  navigate(navStateData?.state?.redirect || "/");
 
 })
 .catch((err)=>{
@@ -69,46 +72,82 @@ setLoading({...loading,signUp:true})
       </Link>
 
       {/* form */}
-      <div className={Classes.login__container}> 
+      <div className={Classes.login__container}>
         <h1>Sign In</h1>
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+              display: "block",
+            }}
+          >
+            {navStateData?.state?.msg}
+          </small>
+        )}
+
         <form action="">
           <div>
             <label htmlFor="email">Email</label>
-            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" id="email" /> 
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              id="email"
+            />
           </div>
 
           <div>
             <label htmlFor="password">Password</label>
-            <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" id="password" />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              id="password"
+            />
           </div>
 
-          <button type="submit" onClick={authHundler} name="signin" className={Classes.login__signInButton}> 
+          <button
+            type="submit"
+            onClick={authHundler}
+            name="signin"
+            className={Classes.login__signInButton}
+          >
             {loading.signIn ? (
-            <ClipLoader color="#000" size={15}></ClipLoader>
-            ):(
+              <ClipLoader color="#000" size={15}></ClipLoader>
+            ) : (
               "Sign In"
             )}
-
           </button>
         </form>
 
         {/* agreement */}
         <p>
-          By signing in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
+          By signing in you agree to the AMAZON FAKE CLONE Conditions of Use &
+          Sale. Please see our Privacy Notice, our Cookies Notice and our
+          Interest-Based Ads Notice.
         </p>
 
         {/* create bckground btn */}
-        <button type="submit" name="signup" onClick={authHundler} className={Classes.login__registorButton}>
-          
-        {loading.signUp ? (
-              <ClipLoader color="#000" size={15}></ClipLoader>
-            ):(
-              "Create your Amazon Account"
-            )}
+        <button
+          type="submit"
+          name="signup"
+          onClick={authHundler}
+          className={Classes.login__registorButton}
+        >
+          {loading.signUp ? (
+            <ClipLoader color="#000" size={15}></ClipLoader>
+          ) : (
+            "Create your Amazon Account"
+          )}
         </button>
 
         {/* to display error when insert incorrect password */}
-        {error && <small style={{paddingTop:"5px", color:"red"}}>{error}</small>}
+        {error && (
+          <small style={{ paddingTop: "5px", color: "red" }}>{error}</small>
+        )}
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ import classes from "./Carousel.module.css";
 
 const CarouselEffect = () => {
   return (
-    <div>
+    <div className={classes.carouselWrapper}>
       <Carousel
         autoPlay={true} //To outo play images
         infiniteLoop={true}

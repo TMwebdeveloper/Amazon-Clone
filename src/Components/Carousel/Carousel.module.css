@@ -1,3 +1,8 @@
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
 .hero__img {
     position: absolute;
     bottom: 0;
@@ -5,7 +10,7 @@
     width: 100%;
     height: 300px;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
   }
   
   .hero__img::before {
