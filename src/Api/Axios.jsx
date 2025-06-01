@@ -1,4 +1,6 @@
 import axios from "axios";
+// If the file is `src/Api/Axios.jsx`
+// import { axiosInstance } from "../Api/Axios"; //  CORRECT
 
 const axiosInstance = axios.create({
   //**Local instance of firebase functions */
