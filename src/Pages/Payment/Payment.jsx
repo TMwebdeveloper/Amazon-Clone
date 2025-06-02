@@ -104,7 +104,7 @@ const Payment = () => {
           <h3>Review items and delivery</h3>
           <div>
             {basket?.map((item) => (
-              <ProductCard product={item} flex={true} />
+              <ProductCard key={item.id} product={item} flex={true} />
             ))}
           </div>
         </div>
@@ -126,21 +126,20 @@ const Payment = () => {
                 {/* price */}
                 <div className={Classes.payment__price}>
                   <div>
-                    <span style={{display:"flex", gap:"10px"}}>
+                    <span style={{ display: "flex", gap: "10px" }}>
                       <p>Total Order |</p> <CurrencyFormat amount={total} />
                     </span>
                   </div>
-                  <button type='submit'>
-                    {
-                      processing? (
+                  <button type="submit">
+                    {processing ? (
                       <div className={Classes.loading}>
-                        <ClipLoader color='gray' size={12}/>
+                        <ClipLoader color="gray" size={12} />
                         <p>please Wait ...</p>
                       </div>
-                      ):"Pay Now"
-                    }
-                    
-                    </button>
+                    ) : (
+                      "Pay Now"
+                    )}
+                  </button>
                 </div>
               </form>
             </div>
